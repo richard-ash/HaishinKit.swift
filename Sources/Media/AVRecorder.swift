@@ -44,7 +44,7 @@ open class AVRecorder: NSObject {
     }
 
     final func appendSampleBuffer(_ sampleBuffer: CMSampleBuffer, mediaType: AVMediaType) {
-        lockQueue.async {
+//        lockQueue.async {
             guard let delegate: AVRecorderDelegate = self.delegate, self.isRunning.value else {
                 return
             }
@@ -69,11 +69,11 @@ open class AVRecorder: NSObject {
             if input.isReadyForMoreMediaData {
                 input.append(sampleBuffer)
             }
-        }
+//        }
     }
 
     final func appendPixelBuffer(_ pixelBuffer: CVPixelBuffer, withPresentationTime: CMTime) {
-        lockQueue.async {
+//        lockQueue.async {
             guard let delegate: AVRecorderDelegate = self.delegate, self.isRunning.value else {
                 return
             }
@@ -98,7 +98,7 @@ open class AVRecorder: NSObject {
             if input.isReadyForMoreMediaData {
                 adaptor.append(pixelBuffer, withPresentationTime: withPresentationTime)
             }
-        }
+//        }
     }
 
     func finishWriting() {
